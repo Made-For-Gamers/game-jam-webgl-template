@@ -1,2 +1,2 @@
 # game-jam-webgl-template
- Web3 integrations for game jams (WebGL)
+ NEAR Web3 integrations for game jams (WebGL)
