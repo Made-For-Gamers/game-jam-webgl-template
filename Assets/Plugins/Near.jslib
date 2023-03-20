@@ -1,12 +1,12 @@
 mergeInto(LibraryManager.library, {
 
-AuthenticateWithNearWallet: async function (appKey, contractName) 
+AuthenticateWithNearWallet: async function (appKey, contractName, networkId, nodeUrl, walletUrl) 
 {  
 
     var config = {
-        networkId: 'testnet',
-        nodeUrl: 'https://rpc.testnet.near.org',
-        walletUrl: 'https://wallet.testnet.near.org'
+        networkId: UTF8ToString(networkId),
+        nodeUrl: UTF8ToString(nodeUrl),
+        walletUrl: UTF8ToString(walletUrl)
     };
 
     var nearConnection = await nearApi.connect(config);
