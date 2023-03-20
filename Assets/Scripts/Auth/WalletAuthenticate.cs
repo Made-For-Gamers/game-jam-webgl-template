@@ -8,7 +8,7 @@ using System.Net.NetworkInformation;
 
 public class WalletAuthenticate : MonoBehaviour
 {
-
+//JSLIB plugin to authenticate with a near wallet using their JavaScript API
 #if UNITY_WEBGL && !UNITY_EDITOR
 
     [DllImport("__Internal")]
@@ -30,6 +30,7 @@ public class WalletAuthenticate : MonoBehaviour
         ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
     }   
 
+    //Update the network from the network dropdown
     private void UpdateNetwork()
     {
         PlayerPrefs.SetString("networkId", ddNetwork.options[ddNetwork.value].text);
@@ -37,6 +38,7 @@ public class WalletAuthenticate : MonoBehaviour
         Near_API.walletUrl = Near_API.baseWalletUrl[PlayerPrefs.GetString("networkId")];
     }
 
+    //Returning from the near wallet store the accountId and keys, load next scene
     public void OnAuthenticationSuccess(string accountId, string allKeys)
     {
         PlayerPrefs.SetString("nearAccountId", accountId);
@@ -51,6 +53,7 @@ public class WalletAuthenticate : MonoBehaviour
 
     void Awake()
     {
+        //When returning from the wallet, get the accountId and keys from the url perams
 #if UNITY_WEBGL && !UNITY_EDITOR
 
         string currentUrl = Application.absoluteURL;

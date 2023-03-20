@@ -48,7 +48,7 @@ public class Near_API : MonoBehaviour
 
     private IEnumerator ViewAccount()
     {
-        //Init post request
+        //Init Near RPC post request
         account = new Post_ViewAccount();
         byte[] rawData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(account));
 
@@ -59,7 +59,7 @@ public class Near_API : MonoBehaviour
             request.downloadHandler = new DownloadHandlerBuffer();
             yield return request.SendWebRequest();
 
-            //Result
+            //Returned result
             if (request.result == UnityWebRequest.Result.Success)
             {
                 ViewAccount viewAccount = JsonConvert.DeserializeObject<ViewAccount>(request.downloadHandler.text);
