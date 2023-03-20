@@ -73,7 +73,7 @@ public class Near_API : MonoBehaviour
                           + "Storage Usage: " + viewAccount.result.storage_usage + "\n"
                            + "\n"
                             + "<< NEAR JAVASCRIPT API >>" + "\n"
-                             + "Account ID: " + PlayerPrefs.GetString("nearAccountID") + "\n"
+                             + "Account ID: " + PlayerPrefs.GetString("nearAccountId") + "\n"
                               + "All Keys: " + PlayerPrefs.GetString("nearAllKeys") + "\n";
             }
             else
