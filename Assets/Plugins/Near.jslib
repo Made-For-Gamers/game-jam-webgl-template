@@ -17,5 +17,11 @@ AuthenticateWithNearWallet: async function (appKey, contractName, networkId, nod
 
 },
 
+RemoveUrlParams: function()
+{
+history.replaceState('data to be passed', 'Title of the page', '/');
+},
+
+
 });
 

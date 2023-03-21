@@ -38,7 +38,7 @@ public class Near_API : MonoBehaviour
     {
         {"mainnet", "mainnet"},
         {"testnet", "testnet"},
-         {"betanet", "betanet"},
+        {"betanet", "betanet"},
     };
 
     private void Start()
@@ -50,6 +50,7 @@ public class Near_API : MonoBehaviour
     {
         //Init Near RPC post request
         account = new Post_ViewAccount();
+        account.@params.account_id = PlayerPrefs.GetString("nearAccountId");
         byte[] rawData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(account));
 
         using (request = new UnityWebRequest(baseNodeUrl[PlayerPrefs.GetString("networkId")], "POST"))

@@ -13,7 +13,11 @@ public class WalletAuthenticate : MonoBehaviour
 
     [DllImport("__Internal")]
     private static extern void AuthenticateWithNearWallet(string appKey, string contractName, string networkId, string nodeUrl, string walletUrl);
- 
+
+    [DllImport("__Internal")]
+    private static extern void RemoveUrlParams();
+
+    //Called by login button
     public void Authenticate()
     {
         AuthenticateWithNearWallet("Made-For-Gamers", "", PlayerPrefs.GetString("networkId"), Near_API.nodeUrl, Near_API.walletUrl);
@@ -64,6 +68,7 @@ public class WalletAuthenticate : MonoBehaviour
         {
             var accountId = queryParams["account_id"];
             var allKeys = queryParams["all_keys"];
+            RemoveUrlParams();
             OnAuthenticationSuccess(accountId, allKeys);
         }
 

@@ -10,6 +10,6 @@ public class Post_ViewAccount
     {
         public string request_type = "view_account";
         public string finality = "final";
-        public string account_id = "mfg.testnet";
+        public string account_id;
     }
 }
