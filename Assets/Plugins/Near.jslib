@@ -1,27 +1,31 @@
 mergeInto(LibraryManager.library, {
 
-AuthenticateWithNearWallet: async function (appKey, contractName, networkId, nodeUrl, walletUrl) 
-{  
 
-    var config = {
-        networkId: UTF8ToString(networkId),
-        nodeUrl: UTF8ToString(nodeUrl),
-        walletUrl: UTF8ToString(walletUrl)
-    };
+    //Request to sign into Near wallet
+    WalletLogin: async function (contractId, networkId) {
+        const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
+        const walletConnection = new WalletConnection(nearConnection);
+        walletConnection.requestSignIn(UTF8ToString(UTF8ToString(contractId)));
+    },
 
-    var nearConnection = await nearApi.connect(config);
-    
-    var walletConnection = new nearApi.WalletConnection(nearConnection, UTF8ToString(appKey));
-    
-    walletConnection.requestSignIn({contractId: ""}); 
+    //Logout of Near wallet
+    WalletLogout: async function (networkId) {
+        const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
+        const walletConnection = new WalletConnection(nearConnection);
+        walletConnection.signOut();
+    },
 
-},
+    //Remove peramaters from URL
+    RemoveUrlParams: function () {
+        history.replaceState({}, document.title, '/');
+    },
 
-RemoveUrlParams: function()
-{
-history.replaceState('data to be passed', 'Title of the page', '/');
-},
-
+    IsLoggedIn: async function (networkId) {
+        const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
+        const walletConnection = new WalletConnection(nearConnection);
+        alert(walletConnection.isSignedIn());
+        //mfgInstance.SendMessage('BtnIsLoggedIn', 'DisplayLoginStatus', status);
+    },
 
 });
 

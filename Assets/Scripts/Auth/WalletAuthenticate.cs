@@ -5,41 +5,75 @@ using System;
 using System.Web;
 using UnityEngine.SceneManagement;
 using System.Net.NetworkInformation;
+using UnityEngine.UI;
 
 public class WalletAuthenticate : MonoBehaviour
 {
-//JSLIB plugin to authenticate with a near wallet using their JavaScript API
-#if UNITY_WEBGL && !UNITY_EDITOR
+    //JSLIB plugin to authenticate with a near wallet using their JavaScript API
+#if UNITY_WEBGL 
 
     [DllImport("__Internal")]
-    private static extern void AuthenticateWithNearWallet(string appKey, string contractName, string networkId, string nodeUrl, string walletUrl);
+    private static extern void WalletLogin(string contractId, string networkId);
 
     [DllImport("__Internal")]
     private static extern void RemoveUrlParams();
 
-    //Called by login button
-    public void Authenticate()
-    {
-        AuthenticateWithNearWallet("Made-For-Gamers", "", PlayerPrefs.GetString("networkId"), Near_API.nodeUrl, Near_API.walletUrl);
-    }
+    [DllImport("__Internal")]
+    private static extern void WalletLogout(string networkId);
+
+    [DllImport("__Internal")]
+    private static extern void IsLoggedIn(string networkId);
 
 #endif
 
-    [SerializeField] private TextMeshProUGUI txtAccountId;
+    [SerializeField] private TextMeshProUGUI txtHeading;
+    [SerializeField] private Button btnLogin;
     [SerializeField] private TMP_Dropdown ddNetwork;
 
     private void Start()
     {
         UpdateNetwork();
         ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
-    }   
+    }
+
+    public void Login()
+    {
+        if (!Near_API.isLoggedin)
+        {
+            btnLogin.GetComponentInChildren<TextMeshProUGUI>().text = "Wait...";
+            btnLogin.enabled = false;
+            WalletLogin("", PlayerPrefs.GetString("networkId"));
+        }
+        else
+        {
+            Logout();
+        }
+    }
+
+    public void LoggedIn()
+    {
+        IsLoggedIn(PlayerPrefs.GetString("networkId"));
+    }
+
+    public void DisplayLoginStatus(string status)
+    {
+        Debug.Log(status);
+    }
+
+    private void Logout()
+    {
+        PlayerPrefs.SetString("nearAccountId", null);
+        PlayerPrefs.SetString("nearAllKeys", null);
+        Near_API.isLoggedin = false;
+        WalletLogout(PlayerPrefs.GetString("networkId"));
+        LoginButton();
+    }
+
 
     //Update the network from the network dropdown
     private void UpdateNetwork()
     {
         PlayerPrefs.SetString("networkId", ddNetwork.options[ddNetwork.value].text);
-        Near_API.nodeUrl = Near_API.baseNodeUrl[PlayerPrefs.GetString("networkId")];
-        Near_API.walletUrl = Near_API.baseWalletUrl[PlayerPrefs.GetString("networkId")];
     }
 
     //Returning from the near wallet store the accountId and keys, load next scene
@@ -47,31 +81,48 @@ public class WalletAuthenticate : MonoBehaviour
     {
         PlayerPrefs.SetString("nearAccountId", accountId);
         PlayerPrefs.SetString("nearAllKeys", allKeys);
-        SceneManager.LoadScene("NearAccount");
+        IsLoggedIn("testnet");
+        Near_API.isLoggedin = true;
+        //SceneManager.LoadScene("NearAccount");
     }
 
     public void OnAuthenticationFailure(string error)
     {
-        txtAccountId.text = error;
+        txtHeading.text = error;
     }
 
     void Awake()
     {
         //When returning from the wallet, get the accountId and keys from the url perams
-#if UNITY_WEBGL && !UNITY_EDITOR
-
-        string currentUrl = Application.absoluteURL;
-        var uri = new Uri(currentUrl);
-        var queryParams = HttpUtility.ParseQueryString(uri.Query);
-
-        if (queryParams["account_id"] != null && queryParams["all_keys"] != null)
+        if (!Near_API.isLoggedin)
         {
-            var accountId = queryParams["account_id"];
-            var allKeys = queryParams["all_keys"];
-            RemoveUrlParams();
-            OnAuthenticationSuccess(accountId, allKeys);
+            string currentUrl = Application.absoluteURL;
+            var uri = new Uri(currentUrl);
+            var queryParams = HttpUtility.ParseQueryString(uri.Query);
+
+            if (queryParams["account_id"] != null && queryParams["all_keys"] != null)
+            {
+                var accountId = queryParams["account_id"];
+                var allKeys = queryParams["all_keys"];
+                RemoveUrlParams();
+                OnAuthenticationSuccess(accountId, allKeys);
+            }
         }
 
-#endif
+        LoginButton();
+    }
+
+    private void LoginButton()
+    {
+        btnLogin.enabled = true;
+
+        if (Near_API.isLoggedin)
+        {
+            btnLogin.GetComponentInChildren<TextMeshProUGUI>().text = "LOGOUT";
+        }
+        else
+        {
+            btnLogin.GetComponentInChildren<TextMeshProUGUI>().text = "LOGIN";
+        }
     }
 }

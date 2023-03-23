@@ -1,11 +1,11 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class Near_API : MonoBehaviour
@@ -14,27 +14,27 @@ public class Near_API : MonoBehaviour
     
     public static string nodeUrl;
     public static string walletUrl;
+    public static bool isLoggedin;
 
     private UnityWebRequest request;
     private Post_ViewAccount account;
 
     //Base URLs
-    public static Dictionary<string, string> baseNodeUrl = new Dictionary<string, string>()
+    private Dictionary<string, string> baseNodeUrl = new Dictionary<string, string>()
     {
         {"mainnet", "https://rpc.mainnet.near.org"},
         {"testnet", "https://rpc.testnet.near.org"},
         {"betanet", "https://rpc.betanet.near.org"},
-        {"localnet", "http://localhost:3030"},
     };
 
-    public static Dictionary<string, string> baseWalletUrl = new Dictionary<string, string>()
+    private Dictionary<string, string> baseWalletUrl = new Dictionary<string, string>()
     {
         {"mainnet", "https://wallet.mainnet.near.org"},
         {"testnet", "https://wallet.testnet.near.org"},
         {"betanet", "https://wallet.betanet.near.org"},
     };
 
-    public static Dictionary<string, string> baseNetworkId = new Dictionary<string, string>()
+    private Dictionary<string, string> baseNetworkId = new Dictionary<string, string>()
     {
         {"mainnet", "mainnet"},
         {"testnet", "testnet"},
@@ -82,6 +82,11 @@ public class Near_API : MonoBehaviour
                 Debug.LogError(string.Format("API post error: {0}", request.error));
             }
         }
+    }
+
+    public void LoginScene()
+    {
+        SceneManager.LoadScene("WalletLogin");
     }
 }
 
