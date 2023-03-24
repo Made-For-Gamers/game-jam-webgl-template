@@ -1804,8 +1804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328a48df49395fd4da75aa5aed04c3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtHeading: {fileID: 0}
+  txtHeading: {fileID: 80701061}
   btnLogin: {fileID: 364700000}
+  btnIsLogin: {fileID: 383574639}
   ddNetwork: {fileID: 1714677692}
 --- !u!4 &1635932029
 Transform:

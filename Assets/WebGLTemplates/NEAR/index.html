@@ -16,7 +16,7 @@
                 case "mainnet":
                     return {
                         networkId: "mainnet",
-                        keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+                        keyStore:  keyStores.BrowserLocalStorageKeyStore(),
                         nodeUrl: "https://rpc.mainnet.near.org",
                         walletUrl: "https://wallet.mainnet.near.org",
                         helperUrl: "https://helper.mainnet.near.org",
@@ -25,7 +25,7 @@
                 case "testnet":
                     return {
                         networkId: "testnet",
-                        keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+                        keyStore: keyStores.BrowserLocalStorageKeyStore(),
                         nodeUrl: "https://rpc.testnet.near.org",
                         walletUrl: "https://wallet.testnet.near.org",
                         helperUrl: "https://helper.testnet.near.org",

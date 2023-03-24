@@ -28,6 +28,7 @@ public class WalletAuthenticate : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI txtHeading;
     [SerializeField] private Button btnLogin;
+    [SerializeField] private Button btnIsLogin;
     [SerializeField] private TMP_Dropdown ddNetwork;
 
     private void Start()
@@ -57,7 +58,7 @@ public class WalletAuthenticate : MonoBehaviour
 
     public void DisplayLoginStatus(string status)
     {
-        Debug.Log(status);
+        btnIsLogin.GetComponentInChildren<TextMeshProUGUI>().text = status;
     }
 
     private void Logout()
@@ -81,9 +82,8 @@ public class WalletAuthenticate : MonoBehaviour
     {
         PlayerPrefs.SetString("nearAccountId", accountId);
         PlayerPrefs.SetString("nearAllKeys", allKeys);
-        IsLoggedIn("testnet");
         Near_API.isLoggedin = true;
-        //SceneManager.LoadScene("NearAccount");
+        SceneManager.LoadScene("NearAccount");
     }
 
     public void OnAuthenticationFailure(string error)

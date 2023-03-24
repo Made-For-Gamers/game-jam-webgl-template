@@ -23,8 +23,8 @@ mergeInto(LibraryManager.library, {
     IsLoggedIn: async function (networkId) {
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const walletConnection = new WalletConnection(nearConnection);
-        alert(walletConnection.isSignedIn());
-        //mfgInstance.SendMessage('BtnIsLoggedIn', 'DisplayLoginStatus', status);
+        var status = walletConnection.isSignedIn();
+        SendMessage('Scripts', 'DisplayLoginStatus', status ? 'true' : 'false');
     },
 
 });
