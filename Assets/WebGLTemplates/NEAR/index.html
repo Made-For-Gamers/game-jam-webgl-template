@@ -11,12 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/near-api-js@1.1.0/dist/near-api-js.js"></script>
     <script>
         const { connect, keyStores, WalletConnection } = nearApi;
+        const myKeys = new keyStores.BrowserLocalStorageKeyStore()
         const connectionConfig = function (network) {
             switch (network) {
                 case "mainnet":
                     return {
                         networkId: "mainnet",
-                        keyStore:  keyStores.BrowserLocalStorageKeyStore(),
+                        keyStore: myKeys,
                         nodeUrl: "https://rpc.mainnet.near.org",
                         walletUrl: "https://wallet.mainnet.near.org",
                         helperUrl: "https://helper.mainnet.near.org",
@@ -25,7 +26,7 @@
                 case "testnet":
                     return {
                         networkId: "testnet",
-                        keyStore: keyStores.BrowserLocalStorageKeyStore(),
+                        keyStore: myKeys,
                         nodeUrl: "https://rpc.testnet.near.org",
                         walletUrl: "https://wallet.testnet.near.org",
                         helperUrl: "https://helper.testnet.near.org",
@@ -34,7 +35,7 @@
                 case "betanet":
                     return {
                         networkId: "betanet",
-                        keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+                        keyStore: myKeys,
                         nodeUrl: "https://rpc.betanet.near.org",
                         walletUrl: "https://wallet.betanet.near.org",
                         helperUrl: "https://helper.betanet.near.org",

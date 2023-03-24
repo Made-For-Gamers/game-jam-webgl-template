@@ -5,7 +5,7 @@ mergeInto(LibraryManager.library, {
     WalletLogin: async function (contractId, networkId) {
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const walletConnection = new WalletConnection(nearConnection);
-        walletConnection.requestSignIn(UTF8ToString(UTF8ToString(contractId)));
+        walletConnection.requestSignIn(UTF8ToString(contractId));
     },
 
     //Logout of Near wallet
