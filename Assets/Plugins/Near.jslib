@@ -15,16 +15,17 @@ mergeInto(LibraryManager.library, {
         walletConnection.signOut();
     },
 
-    //Remove peramaters from URL
-    RemoveUrlParams: function () {
-        history.replaceState({}, document.title, '/');
-    },
-
+    //Login status check
     IsLoggedIn: async function (networkId) {
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const walletConnection = new WalletConnection(nearConnection);
         var status = walletConnection.isSignedIn();
         SendMessage('Scripts', 'DisplayLoginStatus', status ? 'true' : 'false');
+    },
+
+    //Remove peramaters from URL
+    RemoveUrlParams: function () {
+        history.replaceState({}, document.title, '/');
     },
 
 });

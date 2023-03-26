@@ -39,7 +39,7 @@ public class Near_API : MonoBehaviour
         {"mainnet", "mainnet"},
         {"testnet", "testnet"},
         {"betanet", "betanet"},
-    };
+    }; 
 
     private void Start()
     {
