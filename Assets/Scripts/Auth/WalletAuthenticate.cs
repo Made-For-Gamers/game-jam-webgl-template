@@ -4,13 +4,11 @@ using TMPro;
 using System;
 using System.Web;
 using UnityEngine.SceneManagement;
-using System.Net.NetworkInformation;
 using UnityEngine.UI;
-using System.Linq;
 
 public class WalletAuthenticate : MonoBehaviour
 {
-    //JSLIB plugin to authenticate with a near wallet using their JavaScript API
+    //JSLIB plugin functions to interact the Near JavaScript API
 #if UNITY_WEBGL 
 
     [DllImport("__Internal")]
@@ -41,7 +39,6 @@ public class WalletAuthenticate : MonoBehaviour
     /// </summary>
     void Awake()
     {
-
         if (!Near_API.isLoggedin)
         {
             string currentUrl = Application.absoluteURL;
@@ -56,17 +53,17 @@ public class WalletAuthenticate : MonoBehaviour
                 OnAuthenticationSuccess(accountId, allKeys);
             }
         }
-
         LoginButtonText();
     }
 
     private void Start()
     {
+        //Set the network drop down
         CurrentNetwork();
         ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
     }
 
-    //Call Near login function
+    //Login to Near wallet
     public void Login()
     {
         if (!Near_API.isLoggedin)
@@ -81,7 +78,7 @@ public class WalletAuthenticate : MonoBehaviour
         }
     }
 
-    //Call Near logout function
+    //Logout of Near wallet
     private void Logout()
     {
         PlayerPrefs.SetString("nearAccountId", null);
@@ -92,13 +89,13 @@ public class WalletAuthenticate : MonoBehaviour
         IsLoginButtonText("Is Logged In");
     }
 
-    //Call Near IsLoggedIn function
+    //Check the login status
     public void LoggedInStatus()
     {
         IsLoggedIn(PlayerPrefs.GetString("networkId"));
     }
 
-
+    //Change the login button text with login status
     private void LoginButtonText()
     {
         btnLogin.enabled = true;
@@ -113,6 +110,7 @@ public class WalletAuthenticate : MonoBehaviour
         }
     }
 
+    //Change the IsLoggedIn button text with login boolean status
     public void IsLoginButtonText(string status)
     {
         btnIsLogin.GetComponentInChildren<TextMeshProUGUI>().text = status;
@@ -157,6 +155,7 @@ public class WalletAuthenticate : MonoBehaviour
         SceneManager.LoadScene("NearAccount");
     }
 
+    //Throw any authentication errors to the header text label
     public void OnAuthenticationFailure(string error)
     {
         txtHeading.text = error;

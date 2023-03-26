@@ -613,7 +613,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1635932028}
         m_TargetAssemblyTypeName: WalletAuthenticate, Assembly-CSharp
-        m_MethodName: LoggedIn
+        m_MethodName: LoggedInStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

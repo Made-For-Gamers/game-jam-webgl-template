@@ -20,7 +20,7 @@ mergeInto(LibraryManager.library, {
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const walletConnection = new WalletConnection(nearConnection);
         var status = walletConnection.isSignedIn();
-        SendMessage('Scripts', 'DisplayLoginStatus', status ? 'true' : 'false');
+        SendMessage('Scripts', 'IsLoginButtonText', status ? 'true' : 'false');
     },
 
     //Remove peramaters from URL
