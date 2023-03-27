@@ -1,92 +1,24 @@
-using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.Networking;
-using TMPro;
-using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
 
-
-public class Near_API : MonoBehaviour
+namespace Near
 {
-    [SerializeField] private TextMeshProUGUI resultText;
-    
-    public static string nodeUrl;
-    public static string walletUrl;
-    public static bool isLoggedin;
 
-    private UnityWebRequest request;
-    private Post_ViewAccount account;
-
-    //Base URLs
-    private Dictionary<string, string> baseNodeUrl = new Dictionary<string, string>()
+    public class Near_API
     {
-        {"mainnet", "https://rpc.mainnet.near.org"},
-        {"testnet", "https://rpc.testnet.near.org"},
-        {"betanet", "https://rpc.betanet.near.org"},
-    };
+        //JSLIB plugin functions to interact the Near JavaScript API
+#if UNITY_WEBGL
 
-    private Dictionary<string, string> baseWalletUrl = new Dictionary<string, string>()
-    {
-        {"mainnet", "https://wallet.mainnet.near.org"},
-        {"testnet", "https://wallet.testnet.near.org"},
-        {"betanet", "https://wallet.betanet.near.org"},
-    };
+        [DllImport("__Internal")]
+        public static extern void Login(string contractId, string networkId);
 
-    private Dictionary<string, string> baseNetworkId = new Dictionary<string, string>()
-    {
-        {"mainnet", "mainnet"},
-        {"testnet", "testnet"},
-        {"betanet", "betanet"},
-    }; 
+        [DllImport("__Internal")]
+        public static extern void Logout(string networkId);
 
-    private void Start()
-    {
-        StartCoroutine(ViewAccount());
-    }
+        [DllImport("__Internal")]
+        public static extern void LoginStatus(string networkId);
 
-    private IEnumerator ViewAccount()
-    {
-        //Init Near RPC post request
-        account = new Post_ViewAccount();
-        account.@params.account_id = PlayerPrefs.GetString("nearAccountId");
-        byte[] rawData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(account));
+#endif
 
-        using (request = new UnityWebRequest(baseNodeUrl[PlayerPrefs.GetString("networkId")], "POST"))
-        {
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.uploadHandler = new UploadHandlerRaw(rawData);
-            request.downloadHandler = new DownloadHandlerBuffer();
-            yield return request.SendWebRequest();
-
-            //Returned result
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                ViewAccount viewAccount = JsonConvert.DeserializeObject<ViewAccount>(request.downloadHandler.text);
-                resultText.text = "<< NEAR RPC API >>" + "\n"
-                    + "Amount: " + viewAccount.result.amount + "\n"
-                     + "Block Hash: " + viewAccount.result.block_hash + "\n"
-                      + "Block Height: " + viewAccount.result.block_height + "\n"
-                       + "Code Hash: " + viewAccount.result.code_hash + "\n"
-                        + "Locked: " + viewAccount.result.locked + "\n"
-                         + "Storage Paid At: " + viewAccount.result.storage_paid_at + "\n"
-                          + "Storage Usage: " + viewAccount.result.storage_usage + "\n"
-                           + "\n"
-                            + "<< NEAR JAVASCRIPT API >>" + "\n"
-                             + "Account ID: " + PlayerPrefs.GetString("nearAccountId") + "\n"
-                              + "All Keys: " + PlayerPrefs.GetString("nearAllKeys") + "\n";
-            }
-            else
-            {
-                Debug.LogError(string.Format("API post error: {0}", request.error));
-            }
-        }
-    }
-
-    public void LoginScene()
-    {
-        SceneManager.LoadScene("WalletLogin");
     }
 }
-

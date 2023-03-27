@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 383574640}
   - component: {fileID: 383574639}
   m_Layer: 5
-  m_Name: BtnIsLoggedIn
+  m_Name: BtnLoginStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -613,7 +613,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1635932028}
         m_TargetAssemblyTypeName: WalletAuthenticate, Assembly-CSharp
-        m_MethodName: LoggedInStatus
+        m_MethodName: LoginStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Is Logged In
+  m_text: Login Status
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1805,8 +1805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtHeading: {fileID: 80701061}
-  btnLogin: {fileID: 364700000}
-  btnIsLogin: {fileID: 383574639}
   ddNetwork: {fileID: 1714677692}
 --- !u!4 &1635932029
 Transform:

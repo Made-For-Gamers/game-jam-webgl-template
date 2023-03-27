@@ -1,59 +1,24 @@
 using UnityEngine;
-using System.Runtime.InteropServices;
 using TMPro;
-using System;
-using System.Web;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Near;
 
 public class WalletAuthenticate : MonoBehaviour
 {
-    //JSLIB plugin functions to interact the Near JavaScript API
-#if UNITY_WEBGL 
-
-    [DllImport("__Internal")]
-    private static extern void WalletLogin(string contractId, string networkId);
-
-    [DllImport("__Internal")]
-    private static extern void RemoveUrlParams();
-
-    [DllImport("__Internal")]
-    private static extern void WalletLogout(string networkId);
-
-    [DllImport("__Internal")]
-    private static extern void IsLoggedIn(string networkId);
-
-#endif
-
     [SerializeField] private TextMeshProUGUI txtHeading;
-    [SerializeField] private Button btnLogin;
-    [SerializeField] private Button btnIsLogin;
     [SerializeField] private TMP_Dropdown ddNetwork;
 
-
     /// <summary>
-    /// When you authenticate with the Near wallet it will redirect back to your application url and the WebGL application will restart.
-    /// We will get the accountId and keys from the url perameters that are returned from Near and store in PlayerPrefs.
-    /// We call a JavaScript function to remove the perameters from the URL.
+    /// Once you authenticate with the Near wallet you will be redirected back here.
+    /// Near passes 2 perameters in the URL needed for the session (account_id and allKeys)
     /// The user is forwarded to a new scene before the login scene can load.
     /// </summary>
+
     void Awake()
     {
-        if (!Near_API.isLoggedin)
-        {
-            string currentUrl = Application.absoluteURL;
-            var uri = new Uri(currentUrl);
-            var queryParams = HttpUtility.ParseQueryString(uri.Query);
-
-            if (queryParams["account_id"] != null && queryParams["all_keys"] != null)
-            {
-                var accountId = queryParams["account_id"];
-                var allKeys = queryParams["all_keys"];
-                RemoveUrlParams();
-                OnAuthenticationSuccess(accountId, allKeys);
-            }
-        }
-        LoginButtonText();
+        UpdateNetwork();
+        LoginStatus();
     }
 
     private void Start()
@@ -61,59 +26,6 @@ public class WalletAuthenticate : MonoBehaviour
         //Set the network drop down
         CurrentNetwork();
         ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
-    }
-
-    //Login to Near wallet
-    public void Login()
-    {
-        if (!Near_API.isLoggedin)
-        {
-            btnLogin.GetComponentInChildren<TextMeshProUGUI>().text = "Wait...";
-            btnLogin.enabled = false;
-            WalletLogin("", PlayerPrefs.GetString("networkId"));
-        }
-        else
-        {
-            Logout();
-        }
-    }
-
-    //Logout of Near wallet
-    private void Logout()
-    {
-        PlayerPrefs.SetString("nearAccountId", null);
-        PlayerPrefs.SetString("nearAllKeys", null);
-        Near_API.isLoggedin = false;
-        WalletLogout(PlayerPrefs.GetString("networkId"));
-        LoginButtonText();
-        IsLoginButtonText("Is Logged In");
-    }
-
-    //Check the login status
-    public void LoggedInStatus()
-    {
-        IsLoggedIn(PlayerPrefs.GetString("networkId"));
-    }
-
-    //Change the login button text with login status
-    private void LoginButtonText()
-    {
-        btnLogin.enabled = true;
-
-        if (Near_API.isLoggedin)
-        {
-            btnLogin.GetComponentInChildren<TextMeshProUGUI>().text = "LOGOUT";
-        }
-        else
-        {
-            btnLogin.GetComponentInChildren<TextMeshProUGUI>().text = "LOGIN";
-        }
-    }
-
-    //Change the IsLoggedIn button text with login boolean status
-    public void IsLoginButtonText(string status)
-    {
-        btnIsLogin.GetComponentInChildren<TextMeshProUGUI>().text = status;
     }
 
     //Change dropdown selection on start
@@ -146,18 +58,25 @@ public class WalletAuthenticate : MonoBehaviour
         PlayerPrefs.SetString("networkId", ddNetwork.options[ddNetwork.value].text);
     }
 
-    //Returning from the near wallet store the accountId and keys, load next scene
-    public void OnAuthenticationSuccess(string accountId, string allKeys)
+    public void Login()
     {
-        PlayerPrefs.SetString("nearAccountId", accountId);
-        PlayerPrefs.SetString("nearAllKeys", allKeys);
-        Near_API.isLoggedin = true;
-        SceneManager.LoadScene("NearAccount");
+        Near_API.Login("", PlayerPrefs.GetString("networkId"));
+        LoginStatus();
     }
 
-    //Throw any authentication errors to the header text label
-    public void OnAuthenticationFailure(string error)
+    public void Logout()
     {
-        txtHeading.text = error;
+        Near_API.Logout(PlayerPrefs.GetString("networkId"));
+        LoginStatus();
+    }
+
+    public void LoginStatus()
+    {
+        Near_API.LoginStatus(PlayerPrefs.GetString("networkId"));
+    }
+
+    public void ChangeText(string status)
+    {
+        txtHeading.text = "Login Status: " + status;
     }
 }
