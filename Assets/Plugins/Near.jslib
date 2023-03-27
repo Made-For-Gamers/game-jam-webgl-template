@@ -11,16 +11,23 @@ mergeInto(LibraryManager.library, {
     Logout: async function (networkId) {
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const walletConnection = new WalletConnection(nearConnection);
-        walletConnection.signOut();      
+        walletConnection.signOut();
     },
 
     //Login status check
     LoginStatus: async function (networkId) {
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const walletConnection = new WalletConnection(nearConnection);
-        var status = walletConnection.isSignedIn();
-        console.log("Login Status: ", status);
-        SendMessage('Scripts', 'ChangeText', status ? 'true' : 'false');
+        const status = walletConnection.isSignedIn();
+        SendMessage('Scripts', 'ChangeLoginStatus', status ? 'true' : 'false');
+    },
+
+    //Login status check
+    AccountId: async function (networkId) {
+        const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
+        const walletConnection = new WalletConnection(nearConnection);
+        const accountId = walletConnection.getAccountId();
+        SendMessage('Scripts', 'ChangeText', accountId);
     },
 });
 

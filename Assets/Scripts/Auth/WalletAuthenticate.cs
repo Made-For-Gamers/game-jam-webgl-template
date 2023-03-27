@@ -7,6 +7,7 @@ using Near;
 public class WalletAuthenticate : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI txtHeading;
+    [SerializeField] private TextMeshProUGUI btnLoginText;
     [SerializeField] private TMP_Dropdown ddNetwork;
 
     /// <summary>
@@ -15,17 +16,14 @@ public class WalletAuthenticate : MonoBehaviour
     /// The user is forwarded to a new scene before the login scene can load.
     /// </summary>
 
-    void Awake()
-    {
-        UpdateNetwork();
-        LoginStatus();
-    }
 
     private void Start()
     {
         //Set the network drop down
         CurrentNetwork();
         ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
+        LoginStatus();
+       
     }
 
     //Change dropdown selection on start
@@ -60,23 +58,49 @@ public class WalletAuthenticate : MonoBehaviour
 
     public void Login()
     {
-        Near_API.Login("", PlayerPrefs.GetString("networkId"));
+        if (!Near_API.isLoggedIn)
+        {
+            Near_API.Login("", PlayerPrefs.GetString("networkId"));
+        }
+        else
+        {
+            Near_API.Logout(PlayerPrefs.GetString("networkId"));
+        }
         LoginStatus();
     }
 
-    public void Logout()
-    {
-        Near_API.Logout(PlayerPrefs.GetString("networkId"));
-        LoginStatus();
-    }
 
     public void LoginStatus()
     {
         Near_API.LoginStatus(PlayerPrefs.GetString("networkId"));
     }
 
-    public void ChangeText(string status)
+    public void AccountId()
     {
-        txtHeading.text = "Login Status: " + status;
+        Near_API.AccountId(PlayerPrefs.GetString("networkId"));
+    }
+
+    public void ChangeText(string message)
+    {
+        if (message == "")
+        {
+            message = "No Account";
+        }
+        txtHeading.text = message;
+    }
+
+    public void ChangeLoginStatus(string status)
+    {
+        if (status == "true")
+        {
+            Near_API.isLoggedIn = true;
+            btnLoginText.text = "Logout";
+        }
+        else
+        {
+            Near_API.isLoggedIn = false;
+            btnLoginText.text = "Login";
+        }
+        ChangeText("Login Status: " + status);
     }
 }
