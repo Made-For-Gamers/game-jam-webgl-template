@@ -20,7 +20,7 @@ mergeInto(LibraryManager.library, {
         const walletConnection = new WalletConnection(nearConnection);
         var status = walletConnection.isSignedIn();
         console.log("Login Status: ", status);
-        SendMessage('Scripts', 'ChangeText', UTF8ToString(status));
+        SendMessage('Scripts', 'ChangeText', status ? 'true' : 'false');
     },
 });
 
