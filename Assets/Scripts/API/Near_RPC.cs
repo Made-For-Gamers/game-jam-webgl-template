@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using Near;
 
 public class Near_RPC : MonoBehaviour
 {
@@ -49,7 +49,7 @@ public class Near_RPC : MonoBehaviour
     {
         //Init Near RPC post request
         account = new Post_ViewAccount();
-        account.@params.account_id = PlayerPrefs.GetString("nearAccountId");
+        account.@params.account_id = Near_API.accountId;
         byte[] rawData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(account));
 
         using (request = new UnityWebRequest(baseNodeUrl[PlayerPrefs.GetString("networkId")], "POST"))
@@ -70,7 +70,7 @@ public class Near_RPC : MonoBehaviour
                        + "Code Hash: " + viewAccount.result.code_hash + "\n"
                         + "Locked: " + viewAccount.result.locked + "\n"
                          + "Storage Paid At: " + viewAccount.result.storage_paid_at + "\n"
-                          + "Storage Usage: " + viewAccount.result.storage_usage + "\n";                       
+                          + "Storage Usage: " + viewAccount.result.storage_usage + "\n";
             }
             else
             {

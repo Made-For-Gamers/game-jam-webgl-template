@@ -21,7 +21,11 @@ namespace Near
         [DllImport("__Internal")]
         public static extern void AccountId(string networkId);
 
+        [DllImport("__Internal")]
+        public static extern void AccountBalance(string networkId, string accountId);
+
 #endif
         public static bool isLoggedIn;
+        public static string accountId;
     }
 }

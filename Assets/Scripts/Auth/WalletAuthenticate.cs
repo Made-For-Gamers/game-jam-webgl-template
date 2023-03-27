@@ -69,7 +69,6 @@ public class WalletAuthenticate : MonoBehaviour
         LoginStatus();
     }
 
-
     public void LoginStatus()
     {
         Near_API.LoginStatus(PlayerPrefs.GetString("networkId"));
@@ -78,6 +77,11 @@ public class WalletAuthenticate : MonoBehaviour
     public void AccountId()
     {
         Near_API.AccountId(PlayerPrefs.GetString("networkId"));
+    }
+
+    public void AccountBalance()
+    {
+        Near_API.AccountBalance(PlayerPrefs.GetString("networkId"), Near_API.accountId);
     }
 
     public void ChangeText(string message)
@@ -102,5 +106,20 @@ public class WalletAuthenticate : MonoBehaviour
             btnLoginText.text = "Login";
         }
         ChangeText("Login Status: " + status);
+    }
+
+    public void UpdateAccountId(string accountId)
+    {
+        if (accountId == "")
+        {
+            accountId = "Zero";
+        }
+        txtHeading.text = accountId;
+        Near_API.accountId = accountId;
+    }
+
+    public void RPCScene()
+    {
+        SceneManager.LoadScene("RPC");
     }
 }

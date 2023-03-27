@@ -22,12 +22,22 @@ mergeInto(LibraryManager.library, {
         SendMessage('Scripts', 'ChangeLoginStatus', status ? 'true' : 'false');
     },
 
-    //Login status check
+    //Account ID
     AccountId: async function (networkId) {
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const walletConnection = new WalletConnection(nearConnection);
         const accountId = walletConnection.getAccountId();
-        SendMessage('Scripts', 'ChangeText', accountId);
+        SendMessage('Scripts', 'UpdateAccountId', accountId);
     },
+
+    //Account balance
+    AccountBalance: async function (networkId, accountId) {
+        let accountID = UTF8ToString(accountId);
+        const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
+        const account = await nearConnection.account(accountID);
+        const accountBalance = await account.getAccountBalance();
+        SendMessage('Scripts', 'ChangeText', String(accountBalance.total));
+    },
+    
 });
 
