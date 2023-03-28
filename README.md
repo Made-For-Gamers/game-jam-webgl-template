@@ -1,5 +1,5 @@
 # Near WebGL API for Unity
-Example scenes of how to do Near JavaScript API calls and Near RPC calls using the included Near_API class.
+Example scenes of how to do Near JavaScript API calls and Near RPC calls using the included but currently limited Near_API class.
 
 <p>&nbsp;</p>
 
