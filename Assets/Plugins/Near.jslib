@@ -40,16 +40,18 @@ mergeInto(LibraryManager.library, {
     },
 
     //Call contract
-    CallContract: async function (accountId) {
+    CallContract: async function (accountId, contractId, method) {
         const accountID = UTF8ToString(accountId);
+        const contractID = UTF8ToString(contractId);
+        const methodName = UTF8ToString(methodName);
         const contract = new Contract(
             accountID,
-            "You_Contract_Name",
+            contractId,
             {
-                viewMethods: ["You_Contract_Method"],
+                viewMethods: [methodName],
             }
         );
-        const response = await contract.You_Contract_Method();
+        const response = await contract.methodName();
         const message = JSON.stringify(response);
         SendMessage('Scripts', 'ChangeText', String(message));
     },

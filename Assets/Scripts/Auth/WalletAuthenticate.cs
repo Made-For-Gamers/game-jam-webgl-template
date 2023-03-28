@@ -143,9 +143,10 @@ public class WalletAuthenticate : MonoBehaviour
         Near_API.AccountBalance(PlayerPrefs.GetString("networkId"), Near_API.accountId);
     }
 
+    //Call contract
     public void CallContract()
     {
-        Near_API.CallContract(Near_API.accountId);
+        Near_API.CallContract(Near_API.accountId, "contractName", "methodName");
     }
 
     #endregion
