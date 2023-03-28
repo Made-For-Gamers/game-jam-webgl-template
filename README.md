@@ -12,6 +12,18 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 <p>&nbsp;</p>
 
+## Installation
+
+	1) Register a Near wallet on Testnet and/or Mainnet
+	2) Fork this repo to local
+	3) Open local folder from Unity Hub
+	4) File / Build Settings - Set platform to WebGL
+	5) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
+	6) File / Build And Run
+	7) Select you network from the dropdown and click the Login button
+	8) Sign in using your relevant Near wallet.
+
+
 ## Near_API class 
 Class with a Near namespace that contains static methods that mainly calls JavaScript funtions in the JSLIB file (Plugin). Has static variables that stores the user account ID and login status.
 
