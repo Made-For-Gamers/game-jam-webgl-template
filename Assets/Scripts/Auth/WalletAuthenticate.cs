@@ -1,21 +1,21 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using Near;
 
 public class WalletAuthenticate : MonoBehaviour
 {
+    //UI objects
     [SerializeField] private TextMeshProUGUI txtHeading;
     [SerializeField] private TextMeshProUGUI btnLoginText;
     [SerializeField] private TMP_Dropdown ddNetwork;
 
     /// <summary>
-    /// Once you authenticate with the Near wallet you will be redirected back here.
+    /// Once authenticated with the Near wallet, the user is redirected back here.
     /// Near passes 2 perameters in the URL needed for the session (account_id and allKeys)
-    /// The user is forwarded to a new scene before the login scene can load.
     /// </summary>
 
+    #region Scene Methods
 
     private void Start()
     {
@@ -23,10 +23,10 @@ public class WalletAuthenticate : MonoBehaviour
         CurrentNetwork();
         ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
         LoginStatus();
-       
+
     }
 
-    //Change dropdown selection on start
+    //Update dropdown selection at start
     private void CurrentNetwork()
     {
         if (PlayerPrefs.GetString("networkId") == "")
@@ -50,40 +50,13 @@ public class WalletAuthenticate : MonoBehaviour
         }
     }
 
-    //Update the network from the network dropdown
+    //Update the network from any network dropdown change
     private void UpdateNetwork()
     {
         PlayerPrefs.SetString("networkId", ddNetwork.options[ddNetwork.value].text);
     }
 
-    public void Login()
-    {
-        if (!Near_API.isLoggedIn)
-        {
-            Near_API.Login("", PlayerPrefs.GetString("networkId"));
-        }
-        else
-        {
-            Near_API.Logout(PlayerPrefs.GetString("networkId"));
-        }
-        LoginStatus();
-    }
-
-    public void LoginStatus()
-    {
-        Near_API.LoginStatus(PlayerPrefs.GetString("networkId"));
-    }
-
-    public void AccountId()
-    {
-        Near_API.AccountId(PlayerPrefs.GetString("networkId"));
-    }
-
-    public void AccountBalance()
-    {
-        Near_API.AccountBalance(PlayerPrefs.GetString("networkId"), Near_API.accountId);
-    }
-
+    //Log messages to the heading label
     public void ChangeText(string message)
     {
         if (message == "")
@@ -93,6 +66,7 @@ public class WalletAuthenticate : MonoBehaviour
         txtHeading.text = message;
     }
 
+    //Change the login button text and stored isLogged variable with each login/logout action
     public void ChangeLoginStatus(string status)
     {
         if (status == "true")
@@ -108,6 +82,7 @@ public class WalletAuthenticate : MonoBehaviour
         ChangeText("Login Status: " + status);
     }
 
+    //Update the stored accountId vriable
     public void UpdateAccountId(string accountId)
     {
         if (accountId == "")
@@ -118,8 +93,48 @@ public class WalletAuthenticate : MonoBehaviour
         Near_API.accountId = accountId;
     }
 
+    //Load the RPC example scene
     public void RPCScene()
     {
         SceneManager.LoadScene("RPC");
     }
+
+    #endregion
+
+    #region API Calls
+
+    //Login to Near Wallet
+    public void Login()
+    {
+        if (!Near_API.isLoggedIn)
+        {
+            Near_API.Login("", PlayerPrefs.GetString("networkId"));
+        }
+        else
+        {
+            Near_API.Logout(PlayerPrefs.GetString("networkId"));
+        }
+        LoginStatus();
+    }
+
+    //Ask Near for the login status
+    public void LoginStatus()
+    {
+        Near_API.LoginStatus(PlayerPrefs.GetString("networkId"));
+    }
+
+    //Get the account ID
+    public void AccountId()
+    {
+        Near_API.AccountId(PlayerPrefs.GetString("networkId"));
+    }
+
+    //Get the total account balance
+    public void AccountBalance()
+    {
+        Near_API.AccountBalance(PlayerPrefs.GetString("networkId"), Near_API.accountId);
+    }
+
+    #endregion
+
 }
