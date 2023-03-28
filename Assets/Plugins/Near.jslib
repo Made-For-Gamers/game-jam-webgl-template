@@ -32,12 +32,35 @@ mergeInto(LibraryManager.library, {
 
     //Account balance
     AccountBalance: async function (networkId, accountId) {
-        let accountID = UTF8ToString(accountId);
+        const accountID = UTF8ToString(accountId);
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const account = await nearConnection.account(accountID);
         const accountBalance = await account.getAccountBalance();
         SendMessage('Scripts', 'ChangeText', String(accountBalance.total));
     },
+
+    //Call contract
+    CallContract: async function (accountId) {
+        const accountID = UTF8ToString(accountId);
+        const contract = new Contract(
+            accountID,
+            "You_Contract_Name",
+            {
+                viewMethods: ["You_Contract_Method"],
+            }
+        );
+        const response = await contract.You_Contract_Method();
+        const message = JSON.stringify(response);
+        SendMessage('Scripts', 'ChangeText', String(message));
+    },
+
+
+
+
+
+
+
+
     
 });
 

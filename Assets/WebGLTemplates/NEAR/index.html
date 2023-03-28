@@ -7,10 +7,11 @@
     <title>{{{ PRODUCT_NAME }}}</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+
     <!--Near API-->
     <script src="https://cdn.jsdelivr.net/npm/near-api-js@1.1.0/dist/near-api-js.js"></script>
     <script>
-        const { connect, keyStores, WalletConnection } = nearApi;
+        const { connect, keyStores, WalletConnection, Contract } = nearApi;
         const myKeys = new keyStores.BrowserLocalStorageKeyStore()
         const connectionConfig = function (network) {
             switch (network) {
@@ -44,6 +45,7 @@
             }
         }
     </script>
+
 </head>
 
 <body class="{{{ SPLASH_SCREEN_STYLE.toLowerCase() }}}">

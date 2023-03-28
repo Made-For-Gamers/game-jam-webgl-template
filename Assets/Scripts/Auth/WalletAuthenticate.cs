@@ -21,9 +21,17 @@ public class WalletAuthenticate : MonoBehaviour
     {
         //Set the network drop down
         CurrentNetwork();
-        ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
         LoginStatus();
+    }
 
+    private void OnEnable()
+    {
+        ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
+    }
+
+    private void OnDisable()
+    {
+        ddNetwork.onValueChanged.RemoveListener(delegate { UpdateNetwork(); });
     }
 
     //Update dropdown selection at start
@@ -133,6 +141,11 @@ public class WalletAuthenticate : MonoBehaviour
     public void AccountBalance()
     {
         Near_API.AccountBalance(PlayerPrefs.GetString("networkId"), Near_API.accountId);
+    }
+
+    public void CallContract()
+    {
+        Near_API.CallContract(Near_API.accountId);
     }
 
     #endregion
