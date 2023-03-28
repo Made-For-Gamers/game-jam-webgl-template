@@ -23,18 +23,25 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 	7) Select you network from the dropdown and click the Login button
 	8) Sign in using your relevant Near wallet.
 
+<p>&nbsp;</p>
 
-## Near_API class 
+Near JavaScript API documentation - https://docs.near.org/tools/near-api-js/quick-reference
+
+<p>&nbsp;</p>
+
+## Classes
+
+### Near_API class 
 Class with a Near namespace that contains static methods that mainly calls JavaScript funtions in the JSLIB file (Plugin). Has static variables that stores the user account ID and login status.
 
 <p>&nbsp;</p>
 
-## WalletAuthenticate MonoBehavior Class
+### WalletAuthenticate MonoBehavior Class
 Used by the WalletLogin scene to calls the Near_API methods.
 
 <p>&nbsp;</p>
 
-## Near_RPC MonoBehavior Class
+### Near_RPC MonoBehavior Class
 Example of posting json to the Near RPC API and returning a user's account details. Uses 2 other classes to handle the JSON fields.
 
 	1) Post_ViewAccount class - JSON post fields
@@ -43,7 +50,6 @@ Example of posting json to the Near RPC API and returning a user's account detai
 <p>&nbsp;</p>
 
 ## Scenes
-
 
 ### WalletLogin scene
 
