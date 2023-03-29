@@ -7,8 +7,9 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 	Ø Unity version: 2021.3.21f1
 	Ø Build platform: WebGL
-	Ø Json .Net for Unity (used for the RPC API calls only)
+	Ø Newtonsoft.JSON package used for RPC API service only
 	Ø New Input sytem
+	Ø Render Pipeline: URP
 
 <p>&nbsp;</p>
 
