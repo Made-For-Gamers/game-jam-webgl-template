@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Near;
+using UnityEngine.UI;
 
 public class WalletAuthenticate : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class WalletAuthenticate : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txtHeading;
     [SerializeField] private TextMeshProUGUI btnLoginText;
     [SerializeField] private TMP_Dropdown ddNetwork;
+    [SerializeField] private TMP_InputField inputContract;
+    [SerializeField] private TMP_InputField inputMethod;
+    [SerializeField] private TMP_InputField inputArgs;
+    [SerializeField] private Toggle toggleChange;
 
     /// <summary>
     /// Once authenticated with the Near wallet, the user is redirected back here.
@@ -146,7 +151,7 @@ public class WalletAuthenticate : MonoBehaviour
     //Call contract
     public void CallContract()
     {
-        Near_API.LoadContract(Near_API.accountId, "", "", PlayerPrefs.GetString("networkId"));
+        Near_API.CallContract(inputContract.text, inputMethod.text, inputArgs.text, Near_API.accountId, PlayerPrefs.GetString("networkId"), toggleChange.isOn);
     }
   
     #endregion

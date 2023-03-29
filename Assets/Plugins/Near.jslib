@@ -40,19 +40,31 @@ mergeInto(LibraryManager.library, {
     },
 
     //Load Contract
-    LoadContract: async function (accountId, contractId, methodName, networkId) {
+    CallContract: async function (contractId, methodName, arg, accountId, networkId, isChange) {
         const accountID = UTF8ToString(accountId);
         const contractID = UTF8ToString(contractId);
         const method = UTF8ToString(methodName);
+        const args = UTF8ToString(arg);
+        let argument = {};
+        console.log(contractID, method, args, isChange, accountID, UTF8ToString(networkId));
 
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const account = await nearConnection.account(accountID);
         const contract = await new Contract(account, contractID, {
-            viewMethods: [method],
+            viewMethods: isChange ? [] : [method],
+            changeMethods: isChange ? [method] : [],
+            sender: account.accountId,
         });
-     
-        const result = await contract[method];
-        var json = JSON.stringify(result);
+
+        try {
+            argument = JSON.parse(args);
+        } catch (error) {
+            console.log("Argument Parse Error: ", error);
+        }
+
+        const theContract = contract[method];
+        const data = await theContract(argument);
+        var json = JSON.stringify(data);
         SendMessage('Scripts', 'ChangeText', json);
     },
 });

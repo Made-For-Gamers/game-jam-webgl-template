@@ -24,7 +24,7 @@ namespace Near
         public static extern void AccountBalance(string networkId, string accountId);
 
         [DllImport("__Internal")]
-        public static extern void LoadContract(string accountId, string contractId, string methodName, string network);
+        public static extern void CallContract(string contractId, string methodName,string arg, string accountId, string networkbool, bool isChange = false);
 
 
 #endif
