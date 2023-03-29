@@ -14,6 +14,7 @@ public class WalletAuthenticate : MonoBehaviour
     [SerializeField] private TMP_InputField inputMethod;
     [SerializeField] private TMP_InputField inputArgs;
     [SerializeField] private Toggle toggleChange;
+    [SerializeField] private TextMeshProUGUI txtContract;
 
     /// <summary>
     /// Once authenticated with the Near wallet, the user is redirected back here.
@@ -112,6 +113,12 @@ public class WalletAuthenticate : MonoBehaviour
         SceneManager.LoadScene("RPC");
     }
 
+    //Display contract returned data
+    public void DisplayContract(string json)
+    {
+        txtContract.text = json;
+    }
+
     #endregion
 
     #region API Calls
@@ -153,7 +160,7 @@ public class WalletAuthenticate : MonoBehaviour
     {
         Near_API.CallContract(inputContract.text, inputMethod.text, inputArgs.text, Near_API.accountId, PlayerPrefs.GetString("networkId"), toggleChange.isOn);
     }
-  
+
     #endregion
 
 }

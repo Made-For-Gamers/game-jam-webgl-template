@@ -46,14 +46,13 @@ mergeInto(LibraryManager.library, {
         const method = UTF8ToString(methodName);
         const args = UTF8ToString(arg);
         let argument = {};
-        console.log(contractID, method, args, isChange, accountID, UTF8ToString(networkId));
 
         const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
         const account = await nearConnection.account(accountID);
         const contract = await new Contract(account, contractID, {
             viewMethods: isChange ? [] : [method],
             changeMethods: isChange ? [method] : [],
-            sender: account.accountId,
+            sender: accountID,
         });
 
         try {
@@ -65,7 +64,7 @@ mergeInto(LibraryManager.library, {
         const theContract = contract[method];
         const data = await theContract(argument);
         var json = JSON.stringify(data);
-        SendMessage('Scripts', 'ChangeText', json);
+        SendMessage('Scripts', 'DisplayContract', json);
     },
 });
 
