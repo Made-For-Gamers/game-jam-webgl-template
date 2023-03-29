@@ -146,7 +146,7 @@ public class WalletAuthenticate : MonoBehaviour
     //Call contract
     public void CallContract()
     {
-        Near_API.ContractMethod(Near_API.accountId, "nft-unity-contract.morganpage1.testnet", "nft_tokens_for_owner", PlayerPrefs.GetString("networkId"));
+        Near_API.LoadContract(Near_API.accountId, "", "", PlayerPrefs.GetString("networkId"));
     }
   
     #endregion

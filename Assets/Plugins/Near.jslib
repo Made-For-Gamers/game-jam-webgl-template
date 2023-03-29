@@ -40,7 +40,7 @@ mergeInto(LibraryManager.library, {
     },
 
     //Load Contract
-    ContractMethod: async function (accountId, contractId, methodName, networkId) {
+    LoadContract: async function (accountId, contractId, methodName, networkId) {
         const accountID = UTF8ToString(accountId);
         const contractID = UTF8ToString(contractId);
         const method = UTF8ToString(methodName);
