@@ -2329,7 +2329,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1181177475}
   m_OnClick:
     m_PersistentCalls:
@@ -3042,6 +3042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtHeading: {fileID: 80701061}
   btnLoginText: {fileID: 101556764}
+  inputArgs: {fileID: 0}
   ddNetwork: {fileID: 1714677692}
 --- !u!4 &1635932029
 Transform:

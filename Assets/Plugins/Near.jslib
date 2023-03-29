@@ -39,30 +39,21 @@ mergeInto(LibraryManager.library, {
         SendMessage('Scripts', 'ChangeText', String(accountBalance.total));
     },
 
-    //Call contract
-    CallContract: async function (accountId, contractId, method) {
+    //Load Contract
+    ContractMethod: async function (accountId, contractId, methodName, networkId) {
         const accountID = UTF8ToString(accountId);
         const contractID = UTF8ToString(contractId);
-        const methodName = UTF8ToString(methodName);
-        const contract = new Contract(
-            accountID,
-            contractId,
-            {
-                viewMethods: [methodName],
-            }
-        );
-        const response = await contract.methodName();
-        const message = JSON.stringify(response);
-        SendMessage('Scripts', 'ChangeText', String(message));
+        const method = UTF8ToString(methodName);
+
+        const nearConnection = await connect(connectionConfig(UTF8ToString(networkId)));
+        const account = await nearConnection.account(accountID);
+        const contract = await new Contract(account, contractID, {
+            viewMethods: [method],
+        });
+     
+        const result = await contract[method];
+        var json = JSON.stringify(result);
+        SendMessage('Scripts', 'ChangeText', json);
     },
-
-
-
-
-
-
-
-
-    
 });
 
