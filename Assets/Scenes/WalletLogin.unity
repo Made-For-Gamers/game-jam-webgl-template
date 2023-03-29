@@ -1928,6 +1928,7 @@ GameObject:
   - component: {fileID: 668022258}
   - component: {fileID: 668022257}
   - component: {fileID: 668022260}
+  - component: {fileID: 668022261}
   m_Layer: 5
   m_Name: InputMethod
   m_TagString: Untagged
@@ -2107,6 +2108,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.54509807}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &668022261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668022255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc33a39070010f94fb1c2dd721c1286d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHtmlElement: 0
 --- !u!1 &699716064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,6 +2284,7 @@ GameObject:
   - component: {fileID: 707618445}
   - component: {fileID: 707618444}
   - component: {fileID: 707618447}
+  - component: {fileID: 707618448}
   m_Layer: 5
   m_Name: InputArgs
   m_TagString: Untagged
@@ -2449,6 +2464,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.54509807}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &707618448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707618442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc33a39070010f94fb1c2dd721c1286d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHtmlElement: 0
 --- !u!1 &735278526
 GameObject:
   m_ObjectHideFlags: 0
@@ -4608,7 +4636,7 @@ MonoBehaviour:
   inputMethod: {fileID: 668022257}
   inputArgs: {fileID: 707618444}
   toggleChange: {fileID: 1076877449}
-  txtContract: {fileID: 0}
+  txtContract: {fileID: 614670015}
 --- !u!4 &1635932029
 Transform:
   m_ObjectHideFlags: 0
@@ -5791,6 +5819,7 @@ GameObject:
   - component: {fileID: 1871836281}
   - component: {fileID: 1871836280}
   - component: {fileID: 1871836283}
+  - component: {fileID: 1871836284}
   m_Layer: 5
   m_Name: InputContract
   m_TagString: Untagged
@@ -5970,6 +5999,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.54509807}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &1871836284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871836278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc33a39070010f94fb1c2dd721c1286d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHtmlElement: 0
 --- !u!1 &1908538915
 GameObject:
   m_ObjectHideFlags: 0
