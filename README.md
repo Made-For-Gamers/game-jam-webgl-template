@@ -7,7 +7,7 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 	Ø Unity version: 2021.3.21f1
 	Ø Build platform: WebGL
-	Ø Newtonsoft.JSON package used for RPC API service only
+	Ø Newtonsoft.JSON package used for RPC API example only
 	Ø New Input sytem
 	Ø Render Pipeline: URP
 
@@ -17,21 +17,20 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 
 	1) Register a Near wallet on Testnet and/or Mainnet
-	2) Fork this repo to local
+	2) Fork this repo to your local machine
 	3) Open local folder from Unity Hub
 	4) File / Build Settings - Set platform to WebGL
-	5) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New) 
-	6) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
-	7) File / Build And Run
-	8) Select you network from the dropdown and click the Login button
-	9) Sign in using your relevant Near wallet.
+	5) File / Build Settings - Make sure WalletLogin and RPC scenes are both added to the Build Settings window, in that order
+	6) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New)
+	7) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
+	8) File / Build And Run
+	9) When the WebGL application opens in your browser you will see a screen with the login button.
+	10) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
+	11) Sign in using your relevant Near wallet.
 
 
 <p>&nbsp;</p>
 
-Near JavaScript API documentation - https://docs.near.org/tools/near-api-js/quick-reference
-
-<p>&nbsp;</p>
 
 ## Classes
 
@@ -71,3 +70,34 @@ Default scene with the following functions.
 ### RPC scene
 
 Displays the user account details called from the RPC API.
+
+<p>&nbsp;</p>
+
+## Other Resources
+
+### NEAR
+> Near JavaScript API documentation - https://docs.near.org/tools/near-api-js/quick-reference
+
+> Near testnet wallet - https://wallet.testnet.near.org/
+
+> Near testnet explorer - https://explorer.testnet.near.org/
+
+> Near Fungible Tokens docs - https://docs.near.org/tutorials/fts/simple-fts
+
+> Near GitHub - https://github.com/orgs/near/repositories?type=all
+
+> Near Client for Unity (Android / 3 year old repo) - https://github.com/near/near-api-unity
+
+<p>&nbsp;</p>
+
+### Morgan Page of Rogues
+> Near API for Unity - GitHub https://github.com/morganpage/near-api-unity
+
+> Adding blobkchain toUnity (video tutorial) https://youtu.be/vssV5ALChUM
+
+> Near / Unity API Plugin (video tutorial) https://youtu.be/02_dk_gGePk
+
+<p>&nbsp;</p>
+
+### Mintbase
+> Create NFTs on the Near testnet using a visual interface - https://testnet.mintbase.xyz/
