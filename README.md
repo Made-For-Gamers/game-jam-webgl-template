@@ -23,8 +23,9 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 	5) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New)
 	6) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
 	7) File / Build And Run
-	8) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
-	9) Sign in using your relevant Near wallet.
+	8) When the WebGL application opens in your browser you will see a screen with the login button.
+	9) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
+	10) Sign in using your relevant Near wallet.
 
 
 <p>&nbsp;</p>
