@@ -20,12 +20,13 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 	2) Fork this repo to your local machine
 	3) Open local folder from Unity Hub
 	4) File / Build Settings - Set platform to WebGL
-	5) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New)
-	6) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
-	7) File / Build And Run
-	8) When the WebGL application opens in your browser you will see a screen with the login button.
-	9) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
-	10) Sign in using your relevant Near wallet.
+	5) File / Build Settings - Make sure WalletLogin and RPC scenes are both added to the Build Settings window, in that order
+	6) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New)
+	7) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
+	8) File / Build And Run
+	9) When the WebGL application opens in your browser you will see a screen with the login button.
+	10) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
+	11) Sign in using your relevant Near wallet.
 
 
 <p>&nbsp;</p>
