@@ -31,8 +31,6 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 Near JavaScript API documentation - https://docs.near.org/tools/near-api-js/quick-reference
 
-<p>&nbsp;</p>
-
 ## Classes
 
 ### Near_API class 
@@ -71,3 +69,14 @@ Default scene with the following functions.
 ### RPC scene
 
 Displays the user account details called from the RPC API.
+
+<p>&nbsp;</p>
+
+## Other Resources
+
+### Morgan Page of Rogues
+> Near API for Unity - GitHub https://github.com/morganpage/near-api-unity
+
+> Adding blobkchain toUnity (video tutorial) https://youtu.be/vssV5ALChUM
+
+> Near / Unity API Plugin (video tutorial) https://youtu.be/02_dk_gGePk
