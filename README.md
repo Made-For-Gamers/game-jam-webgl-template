@@ -7,7 +7,7 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 	Ø Unity version: 2021.3.21f1
 	Ø Build platform: WebGL
-	Ø Newtonsoft.JSON package used for RPC API service only
+	Ø Newtonsoft.JSON package used for RPC API example only
 	Ø New Input sytem
 	Ø Render Pipeline: URP
 
@@ -17,13 +17,13 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 
 	1) Register a Near wallet on Testnet and/or Mainnet
-	2) Fork this repo to local
+	2) Fork this repo to your local machine
 	3) Open local folder from Unity Hub
 	4) File / Build Settings - Set platform to WebGL
-	5) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New) 
+	5) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New)
 	6) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
 	7) File / Build And Run
-	8) Select you network from the dropdown and click the Login button
+	8) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
 	9) Sign in using your relevant Near wallet.
 
 
