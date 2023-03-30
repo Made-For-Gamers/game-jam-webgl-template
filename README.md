@@ -29,7 +29,6 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 <p>&nbsp;</p>
 
-Near JavaScript API documentation - https://docs.near.org/tools/near-api-js/quick-reference
 
 ## Classes
 
@@ -73,6 +72,15 @@ Displays the user account details called from the RPC API.
 <p>&nbsp;</p>
 
 ## Other Resources
+
+### NEAR
+> Near JavaScript API documentation - https://docs.near.org/tools/near-api-js/quick-reference
+
+> Near GitHub - https://github.com/orgs/near/repositories?type=all
+
+> Near Client for Unity (Android / 3 year old repo) - https://github.com/near/near-api-unity
+
+<p>&nbsp;</p>
 
 ### Morgan Page of Rogues
 > Near API for Unity - GitHub https://github.com/morganpage/near-api-unity
