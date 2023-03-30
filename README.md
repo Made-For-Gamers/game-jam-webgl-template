@@ -76,6 +76,8 @@ Displays the user account details called from the RPC API.
 ### NEAR
 > Near JavaScript API documentation - https://docs.near.org/tools/near-api-js/quick-reference
 
+> Near testnet wallet - https://wallet.testnet.near.org/
+
 > Near GitHub - https://github.com/orgs/near/repositories?type=all
 
 > Near Client for Unity (Android / 3 year old repo) - https://github.com/near/near-api-unity
@@ -92,4 +94,4 @@ Displays the user account details called from the RPC API.
 <p>&nbsp;</p>
 
 ### Mintbase
-> Create NFTs on the Near network using a visual interface - https://testnet.mintbase.xyz/
+> Create NFTs on the Near testnet using a visual interface - https://testnet.mintbase.xyz/
