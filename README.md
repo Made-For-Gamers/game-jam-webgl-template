@@ -78,6 +78,10 @@ Displays the user account details called from the RPC API.
 
 > Near testnet wallet - https://wallet.testnet.near.org/
 
+> Near testnet explorer - https://explorer.testnet.near.org/
+
+> Near Fungible Tokens docs - https://docs.near.org/tutorials/fts/simple-fts
+
 > Near GitHub - https://github.com/orgs/near/repositories?type=all
 
 > Near Client for Unity (Android / 3 year old repo) - https://github.com/near/near-api-unity
