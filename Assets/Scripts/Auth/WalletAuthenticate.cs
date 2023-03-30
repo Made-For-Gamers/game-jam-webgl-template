@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Near;
 using UnityEngine.UI;
 using Newtonsoft.Json;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 
 public class WalletAuthenticate : MonoBehaviour
@@ -17,6 +18,7 @@ public class WalletAuthenticate : MonoBehaviour
     [SerializeField] private TMP_InputField inputArgs;
     [SerializeField] private Toggle toggleChange;
     [SerializeField] private TextMeshProUGUI txtContract;
+    [SerializeField] private Image nftImage;
 
     /// <summary>
     /// Once authenticated with the Near wallet, the user is redirected back here.
@@ -116,11 +118,15 @@ public class WalletAuthenticate : MonoBehaviour
     }
 
     //Display contract returned data
-    public void DisplayContract(string json)
+    public async void DisplayContract(string json)
     {
-        //string text = JsonConvert.SerializeObject(json, Formatting.Indented);
-        txtContract.text = json;
-        //
+        NFTMetadata.Root nft = JsonConvert.DeserializeObject<NFTMetadata.Root>(json);
+        txtContract.text = nft.metadata.reference;
+        Texture texture = await GetNFTTexture.GetImage();
+        if (texture != null)
+        {
+            nftImage.sprite = Sprite.Create((Texture2D)texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+        }
     }
 
     #endregion
