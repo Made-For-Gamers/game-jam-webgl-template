@@ -63,7 +63,7 @@ mergeInto(LibraryManager.library, {
 
         const theContract = contract[method];
         const data = await theContract(argument);
-        var json = JSON.stringify(data);
+        var json = JSON.stringify(data, null, 2);
         SendMessage('Scripts', 'DisplayContract', json);
     },
 });

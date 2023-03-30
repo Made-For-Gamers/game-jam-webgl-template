@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Near;
 using UnityEngine.UI;
+using Newtonsoft.Json;
+
 
 public class WalletAuthenticate : MonoBehaviour
 {
@@ -116,7 +118,9 @@ public class WalletAuthenticate : MonoBehaviour
     //Display contract returned data
     public void DisplayContract(string json)
     {
+        //string text = JsonConvert.SerializeObject(json, Formatting.Indented);
         txtContract.text = json;
+        //
     }
 
     #endregion
