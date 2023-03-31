@@ -27,6 +27,7 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 	8) When the WebGL application opens in your browser you will see a screen with the login button.
 	9) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
 	10) Sign in using your relevant Near wallet.
+	11) Use the interface to test various Near API calls, including calling a contract method and passing an argument. 
 
 
 <p>&nbsp;</p>
