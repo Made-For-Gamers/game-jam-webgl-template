@@ -64,6 +64,7 @@ Default scene with the following functions.
 	4) Get account ID
 	5) Get account balance
 	6) Navigate to the RPC scene
+	7) Call a method on a contract passing in a JSON argument (Examples of retrieving a Mintbase NFT and the MFG NFT)
 
 
 
