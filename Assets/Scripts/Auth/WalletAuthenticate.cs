@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using Unity.VisualScripting.Antlr3.Runtime;
 using System;
+using Unity.VisualScripting.FullSerializer;
 
 
 public class WalletAuthenticate : MonoBehaviour
@@ -18,7 +19,8 @@ public class WalletAuthenticate : MonoBehaviour
     [SerializeField] private TMP_InputField inputMethod;
     [SerializeField] private TMP_InputField inputArgs;
     [SerializeField] private Toggle toggleChange;
-    [SerializeField] private Toggle toggleNFT;
+    [SerializeField] private Toggle toggleNFTMint;
+    [SerializeField] private Toggle toggleNFTMFG;
     [SerializeField] private TextMeshProUGUI txtContract;
     [SerializeField] private Image nftImage;
 
@@ -119,15 +121,12 @@ public class WalletAuthenticate : MonoBehaviour
         SceneManager.LoadScene("RPC");
     }
 
-    //Display returned contract metadata
+    //Display returned contract metadata and NFT image if selected
     public async void DisplayContract(string json)
-    {
-        NearNFTMeta.Root nft = JsonConvert.DeserializeObject<NearNFTMeta.Root>(json);
-        txtContract.text = json;
-
-        //Get NFT Image
-        if (toggleNFT.isOn)
+    {       
+        if (toggleNFTMint.isOn)
         {
+            NearNFTMeta.Root nft = JsonConvert.DeserializeObject<NearNFTMeta.Root>(json);
             ArweaveNFTMeta nftData = await GetArweaveNFTMeta.GetNftData(nft.metadata.reference);
             Texture texture = await GetNFTImage.GetImage(nftData.media.ToString());
             if (texture != null)
@@ -135,6 +134,17 @@ public class WalletAuthenticate : MonoBehaviour
                 nftImage.sprite = Sprite.Create((Texture2D)texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
             }
         }
+        else if (toggleNFTMFG.isOn)
+        {
+            MFGNFTMeta nft = JsonConvert.DeserializeObject<MFGNFTMeta>(json);
+            Texture texture = await GetNFTImage.GetImage(nft.metadata.media.ToString());
+            
+            if (texture != null)
+            {
+                nftImage.sprite = Sprite.Create((Texture2D)texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+            }
+        }
+        txtContract.text = json;
     }
 
     #endregion
