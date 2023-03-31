@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-public class NFTMetadata
+public class NearNFTMeta
 {
 
     public class ApprovedAccountIds

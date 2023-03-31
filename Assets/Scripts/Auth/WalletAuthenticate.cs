@@ -5,6 +5,7 @@ using Near;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using Unity.VisualScripting.Antlr3.Runtime;
+using System;
 
 
 public class WalletAuthenticate : MonoBehaviour
@@ -17,6 +18,7 @@ public class WalletAuthenticate : MonoBehaviour
     [SerializeField] private TMP_InputField inputMethod;
     [SerializeField] private TMP_InputField inputArgs;
     [SerializeField] private Toggle toggleChange;
+    [SerializeField] private Toggle toggleNFT;
     [SerializeField] private TextMeshProUGUI txtContract;
     [SerializeField] private Image nftImage;
 
@@ -117,15 +119,21 @@ public class WalletAuthenticate : MonoBehaviour
         SceneManager.LoadScene("RPC");
     }
 
-    //Display contract returned data
+    //Display returned contract metadata
     public async void DisplayContract(string json)
     {
-        NFTMetadata.Root nft = JsonConvert.DeserializeObject<NFTMetadata.Root>(json);
-        txtContract.text = nft.metadata.reference;
-        Texture texture = await GetNFTTexture.GetImage();
-        if (texture != null)
+        NearNFTMeta.Root nft = JsonConvert.DeserializeObject<NearNFTMeta.Root>(json);
+        txtContract.text = json;
+
+        //Get NFT Image
+        if (toggleNFT.isOn)
         {
-            nftImage.sprite = Sprite.Create((Texture2D)texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+            ArweaveNFTMeta nftData = await GetArweaveNFTMeta.GetNftData(nft.metadata.reference);
+            Texture texture = await GetNFTImage.GetImage(nftData.media.ToString());
+            if (texture != null)
+            {
+                nftImage.sprite = Sprite.Create((Texture2D)texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+            }
         }
     }
 
