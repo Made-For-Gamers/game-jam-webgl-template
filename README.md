@@ -19,11 +19,11 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 	1) Register a Near wallet on Testnet and/or Mainnet
 	2) Fork this repo to your local machine
-	3) Open local folder from Unity Hub
-	4) Unity will report that their are compile error, click Ignore
+	3) Open local repo folder from Unity Hub
+	4) Unity will report that their are compile errors, click Ignore
 	5) File / Build Settings - Set platform to WebGL
 	6) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
-	7) File / Build And Run
+	7) File / Build And Run - set your own build directory
 	8) When the WebGL application opens in your browser you will see a screen with the login button.
 	9) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
 	10) Sign in using your relevant Near wallet.
