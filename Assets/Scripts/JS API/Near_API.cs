@@ -6,7 +6,7 @@ namespace Near
     public class Near_API
     {
         //JSLIB plugin - functions to interact the Near JavaScript API
-#if UNITY_WEBGL
+#if UNITY_WEBGL 
 
         [DllImport("__Internal")]
         public static extern void Login(string contractId, string networkId);

@@ -121,6 +121,12 @@ public class WalletAuthenticate : MonoBehaviour
         SceneManager.LoadScene("RPC");
     }
 
+    //Load the 0xcord - Chainlink VRF scene
+    public void ChainlinkScene()
+    {
+        SceneManager.LoadScene("0xcord");
+    }
+
     //Display returned contract metadata and NFT image if selected
     public async void DisplayContract(string json)
     {       
