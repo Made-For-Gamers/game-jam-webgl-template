@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //0xford - Chainlink VRF
 // https://docs.chain.link/vrf/v2/introduction/
@@ -63,5 +64,8 @@ public class Chainlink_API : MonoBehaviour
         BtnCallApi.enabled = true;
     }
 
-
+    public void NearScene()
+    {
+        SceneManager.LoadScene("WalletLogin");
+    }
 }
