@@ -6,8 +6,9 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 ## Unity Project 
 
 	Ø Unity version: 2021.3.21f1
+	Ø Make sure you install 2 Unity Editor modules - WebGL Build Support & Windows Build Support (IL2CPP)
 	Ø Build platform: WebGL
-	Ø Newtonsoft.JSON package used for RPC API example only
+	Ø Newtonsoft.JSON
 	Ø New Input sytem
 	Ø Render Pipeline: URP
 
@@ -18,15 +19,15 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 	1) Register a Near wallet on Testnet and/or Mainnet
 	2) Fork this repo to your local machine
-	3) Open local folder from Unity Hub
-	4) File / Build Settings - Set platform to WebGL
-	5) File / Build Settings - Make sure WalletLogin and RPC scenes are both added to the Build Settings window, in that order
-	6) Edit / Project Settings / Player / Other Settings / Active Input Handling - Input System Package (New)
-	7) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
-	8) File / Build And Run
-	9) When the WebGL application opens in your browser you will see a screen with the login button.
-	10) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
-	11) Sign in using your relevant Near wallet.
+	3) Open local repo folder from Unity Hub
+	4) Unity will report that their are compile errors, click Ignore
+	5) File / Build Settings - Set platform to WebGL
+	6) Edit / Project Settings / Player / Resolution and Presentation - Select Near WebGL template
+	7) File / Build And Run - set your own build directory
+	8) When the WebGL application opens in your browser you will see a screen with the login button.
+	9) Select the relevant Near network testnet/mainnet from the dropdown and click the Login button
+	10) Sign in using your relevant Near wallet.
+	11) Use the interface to test various Near API calls, including calling a contract method and passing an argument. 
 
 
 <p>&nbsp;</p>
@@ -64,6 +65,7 @@ Default scene with the following functions.
 	4) Get account ID
 	5) Get account balance
 	6) Navigate to the RPC scene
+	7) Call a method on a contract passing in a JSON argument (Examples of retrieving a Mintbase NFT and the MFG NFT)
 
 
 
