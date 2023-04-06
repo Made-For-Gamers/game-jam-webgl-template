@@ -1377,6 +1377,7 @@ GameObject:
   - component: {fileID: 560672642}
   - component: {fileID: 560672641}
   - component: {fileID: 560672640}
+  - component: {fileID: 560672643}
   m_Layer: 5
   m_Name: Toggle Panel
   m_TagString: Untagged
@@ -1471,6 +1472,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560672638}
   m_CullTransparentMesh: 1
+--- !u!114 &560672643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560672638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 1
 --- !u!1 &572644579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,7 +1782,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1799382751}
   toggleTransition: 1
   graphic: {fileID: 980381818}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 560672643}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3126,7 +3140,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1351509570}
   toggleTransition: 1
   graphic: {fileID: 1223935729}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 560672643}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4103,7 +4117,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1647801986}
   toggleTransition: 1
   graphic: {fileID: 819077785}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 560672643}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
