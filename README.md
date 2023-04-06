@@ -18,7 +18,7 @@ Example scenes of how to do Near JavaScript API calls and Near RPC calls using t
 
 
 	1) Register a Near wallet on Testnet and/or Mainnet
-	2) Fork this repo to your local machine
+	2) Fork this repo to your local machine, make sure LFS is also installed
 	3) Open local repo folder from Unity Hub
 	4) Unity will report that their are compile errors, click Ignore
 	5) File / Build Settings - Set platform to WebGL
