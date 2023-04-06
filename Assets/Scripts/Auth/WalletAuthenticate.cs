@@ -41,6 +41,22 @@ public class WalletAuthenticate : MonoBehaviour
     private void OnEnable()
     {
         ddNetwork.onValueChanged.AddListener(delegate { UpdateNetwork(); });
+        toggleNFTMFG.onValueChanged.AddListener(delegate { UpdateMFGToggle(); });
+        toggleNFTMint.onValueChanged.AddListener(delegate { UpdateMintToggle(); });
+    }
+
+    private void UpdateMintToggle()
+    {
+        inputContract.text = "paxstore.mintspace2.testnet";
+        inputMethod.text = "nft_token";
+        inputArgs.text = "{\"token_id\": \"0\"}";
+    }
+
+    private void UpdateMFGToggle()
+    {
+        inputContract.text = "mfg.testnet";
+        inputMethod.text = "get_nft";
+        inputArgs.text = "{\"token_id\": \"1\"}";
     }
 
     private void OnDisable()
